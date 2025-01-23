@@ -1,5 +1,8 @@
+import { useRef, useState } from "react";
 import "./contact.scss";
 import { motion } from "framer-motion";
+import emailjs from '@emailjs/browser';
+ 
 
 const variants = {
     initial: {
@@ -18,21 +21,47 @@ const variants = {
 
 
 const Contact = () => {
+
+    const formRef = useRef();
+    const [error, setError] = useState(false)
+    const [success, setSuccess] = useState(false)
+
+    
+    const sendEmail = (e) => {
+        e.preventDefault();
+    
+        emailjs
+          .sendForm('service_1rpxxsa', 'template_mylcy4w', formRef.current, {
+            publicKey: 'wbC5Z3SzDpGzbMrac',
+          })
+          .then(
+            () => {
+                  setSuccess(true)
+                  setError(false); 
+                  formRef.current.reset();
+            },
+              (error) => {
+                  setError(true)
+                  setSuccess(false);
+            },
+          );
+      };
+
   return (
       <motion.div className="contact" variants={variants} initial="initial" whileInView="animate">
           <motion.div className="textContainer" variants={variants}>
               <motion.h1 variants={variants}>Let's work together</motion.h1>
               <motion.div className="item" variants={variants}>
                   <h2>Mail</h2>
-                  <span>athargagroo@gmail.com</span>
+                  <a href="mailto:athargagroo@gmail.com" className="anchors"><span>athargagroo@gmail.com</span></a>
               </motion.div>
               <motion.div className="item" variants={variants}>
                   <h2>Address</h2>
-                  <span>HSR Layout, Bengaluru.</span>
+                  <a href="https://www.google.com/maps/place/House+of+BilThar/@12.90652,77.6315657,641m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bae15007ca2f4d1:0x6dbe2966ba1b8566!8m2!3d12.9065148!4d77.6341406!16s%2Fg%2F11wp15sb86?entry=ttu&g_ep=EgoyMDI1MDEyMC4wIKXMDSoASAFQAw%3D%3D" className="anchors" target="_blank"><span>HSR Layout, Bengaluru.</span></a>
               </motion.div>
               <motion.div className="item" variants={variants}>
                   <h2>Phone</h2>
-                  <span>+91 7006146133</span>
+                  <a href="tel:+917006146133" className="anchors" target="_blank"><span>+91 7006146133</span></a>
               </motion.div>
           </motion.div>
           <div className="formContainer">
@@ -52,11 +81,13 @@ const Contact = () => {
                           d="M13.5 2C13.5 2 15.8335 2.21213 18.8033 5.18198C21.7731 8.15183 21.9853 10.4853 21.9853 10.4853" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
             </svg>
               </motion.div>
-              <motion.form initial={{opacity:0}} whileInView={{opacity:1}} transition={{delay:3.7, duration:1}}>
-                  <input type="text" required placeholder="Name" />
-                  <input type="email" required placeholder="Email" />
-                  <textarea rows={8} placeholder="Message" />
+              <motion.form ref={formRef} onSubmit={sendEmail} initial={{opacity:0}} whileInView={{opacity:1}} transition={{delay:3.7, duration:1}}>
+                  <input type="text" required placeholder="Name" name="name" />
+                  <input type="email" required placeholder="Email" name="email"/>
+                  <textarea rows={8} placeholder="Message" name="message"/>
                   <button>Submit</button>
+                  {error && "Oops!!! There is some Error while sending the Message, please try again."}
+                  {success && "Message Send Successfully !!! 😊"}
               </motion.form>
           </div>
     </motion.div>
