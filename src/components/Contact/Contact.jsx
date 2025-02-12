@@ -27,15 +27,18 @@ const Contact = () => {
     const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false);
 
-    
+    const serviceId = import.meta.env.VITE_SERVICE_ID;
+    const templateId = import.meta.env.VITE_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
     const sendEmail = (e) => {
         e.preventDefault();
         setLoading(true);
     
         emailjs
-          .sendForm('service_1rpxxsa', 'template_mylcy4w', formRef.current, {
-            publicKey: 'wbC5Z3SzDpGzbMrac',
-          })
+            .sendForm(serviceId, templateId, formRef.current, {
+            publicKey: publicKey,
+        })
           .then(
             () => {
                   setSuccess(true)
