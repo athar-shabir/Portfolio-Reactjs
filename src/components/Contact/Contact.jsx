@@ -65,7 +65,7 @@ const Contact = () => {
               </motion.div>
               <motion.div className="item" variants={variants}>
                   <h2>Address</h2>
-                  <a href="https://www.google.com/maps/place/House+of+BilThar/@12.90652,77.6315657,641m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bae15007ca2f4d1:0x6dbe2966ba1b8566!8m2!3d12.9065148!4d77.6341406!16s%2Fg%2F11wp15sb86?entry=ttu&g_ep=EgoyMDI1MDEyMC4wIKXMDSoASAFQAw%3D%3D" className="anchors" target="_blank"><span>HSR Layout, Bengaluru, India.</span></a>
+                  <a href="https://www.google.com/maps/place/House+of+BilThar/@12.90652,77.6315657,641m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bae15007ca2f4d1:0x6dbe2966ba1b8566!8m2!3d12.9065148!4d77.6341406!16s%2Fg%2F11wp15sb86?entry=ttu&g_ep=EgoyMDI1MDEyMC4wIKXMDSoASAFQAw%3D%3D" className="anchors" target="_blank"><span>Srinagar, India.</span></a>
               </motion.div>
               <motion.div className="item" variants={variants}>
                   <h2>Phone</h2>

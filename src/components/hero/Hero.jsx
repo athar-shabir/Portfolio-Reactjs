@@ -49,8 +49,26 @@ const Hero = () => {
             <motion.h2 id="name_athar" variants={textVariants}>ATHAR SHABIR</motion.h2>
             <motion.h1 variants={textVariants}>Web Developer and UI Designer</motion.h1>
             <motion.div variants={textVariants} className="buttons">
-                <motion.button className="b1" variants={textVariants}>See the Latest Works</motion.button>
-                <motion.button className="b1" variants={textVariants}>Contact Me</motion.button>
+                
+                      <motion.button
+                             className="b1"
+                             variants={textVariants}
+                             onClick={() =>
+                             document.getElementById("Portfolio")?.scrollIntoView({ behavior: "smooth" })
+                             }
+                                    >
+                                    See the Latest Works
+                         </motion.button>
+
+                        <motion.button
+                                    className="b1"
+                                    variants={textVariants}
+                                    onClick={() =>
+                                        document.getElementById("Contact")?.scrollIntoView({ behavior: "smooth" })
+                                    }
+                                    >
+                                    Contact Me
+                            </motion.button>
             </motion.div>
             <motion.img variants={textVariants} animate="scrollButton" src="/scroll.png" alt="" />
         </motion.div>
